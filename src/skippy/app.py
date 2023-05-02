@@ -1,7 +1,5 @@
-from fastapi import FastAPI
-
 from api import router
-
+from fastapi import FastAPI
 
 tags_metadata = [
     {
