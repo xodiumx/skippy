@@ -10,7 +10,7 @@ router = APIRouter(
 
 
 @router.post('/sign-up', response_model=Token)
-def sign_up(user_data: UserCreate,
+async def sign_up(user_data: UserCreate,
             service: AuthService = Depends()
             ):
     """Регистрация пользователя"""
@@ -18,7 +18,7 @@ def sign_up(user_data: UserCreate,
 
 
 @router.post('/sign-in', response_model=Token)
-def sing_in(form_data: OAuth2PasswordRequestForm = Depends(),
+async def sing_in(form_data: OAuth2PasswordRequestForm = Depends(),
             service: AuthService = Depends(),
             ):
     """Авторизация пользователя."""
@@ -29,6 +29,6 @@ def sing_in(form_data: OAuth2PasswordRequestForm = Depends(),
 
 
 @router.get('/user', response_model=User)
-def get_user(user: User = Depends(get_current_user)):
+async def get_user(user: User = Depends(get_current_user)):
     """Получени информации о пользователе."""
     return user

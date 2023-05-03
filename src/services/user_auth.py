@@ -1,14 +1,15 @@
 from datetime import datetime, timedelta
 
-from db import get_session
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.hash import bcrypt
 from pydantic import ValidationError
 from schemas.user_auth import Token, User, UserCreate
-from settings import settings
 from sqlalchemy.orm import Session
+
+from db import get_session
+from settings import settings
 from tables import User as UserTable
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/auth/sign-in')
