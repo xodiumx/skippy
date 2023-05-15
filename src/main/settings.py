@@ -3,10 +3,16 @@ from pydantic import BaseSettings
 
 class Settings(BaseSettings):
     secret_key: str
+    user_secret_key: str
 
     server_host: str
     server_port: int
-    database_url: str
+    
+    db_host: str
+    db_port: int
+    db_name: str
+    db_user: str
+    db_pass: str
 
     jwt_secret: str
     jwt_algorithm: str
