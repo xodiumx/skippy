@@ -14,3 +14,5 @@ router = APIRouter(
 @router.get('/test-protected')
 def protected_route(user: User = Depends(current_user)):
     return f"Hello, {user.email}"
+
+# TODO: Endpoint me, update password, ...

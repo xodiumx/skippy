@@ -63,4 +63,7 @@ JWT_EXPIRATION=3600
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=admin
 ```
-5. запустить файл `__main__.py`
+5. Выполнить команду:
+```
+uvicorn app:app --reload
+```

@@ -5,7 +5,7 @@ from fastapi_users import BaseUserManager, IntegerIDMixin
 
 from main.settings import settings
 
-from .models import User, get_user_db
+from .models import User
 
 
 SECRET = settings.user_secret_key
@@ -29,7 +29,3 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         self, user: User, token: str, request: Optional[Request] = None
     ):
         print(f'Verification requested for user {user.id}. Verification token: {token}')
-
-
-async def get_user_manager(user_db=Depends(get_user_db)):
-    yield UserManager(user_db)

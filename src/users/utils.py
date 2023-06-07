@@ -1,11 +1,15 @@
+from fastapi import Depends
 from fastapi_users import FastAPIUsers
+from fastapi_users.db import SQLAlchemyUserDatabase
 from fastapi_users.authentication import (
     AuthenticationBackend, CookieTransport, JWTStrategy, )
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from main.db import get_async_session
 from main.settings import settings
 
 from .models import User
-from .manage import get_user_manager
+from .manage import UserManager
 
 
 SECRET = settings.secret_key
@@ -14,6 +18,14 @@ SECRET = settings.secret_key
 def get_jwt_strategy() -> JWTStrategy:
     """Получение JWT - токена."""
     return JWTStrategy(secret=SECRET, lifetime_seconds=3600)
+
+
+async def get_user_db(session: AsyncSession = Depends(get_async_session)):
+    yield SQLAlchemyUserDatabase(session, User)
+
+
+async def get_user_manager(user_db=Depends(get_user_db)):
+    yield UserManager(user_db)
 
 
 cookie_transport = CookieTransport(
