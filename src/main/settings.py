@@ -21,6 +21,8 @@ class Settings(BaseSettings):
     admin_username: str
     admin_password: str
 
+    imdb_key: str
+    
 
 settings = Settings(
     _env_file='.env',

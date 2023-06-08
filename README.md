@@ -62,6 +62,8 @@ JWT_EXPIRATION=3600
 
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=admin
+
+IMDB_KEY=k_cppbnlsb
 ```
 5. Выполнить команду:
 ```

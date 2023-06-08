@@ -1,8 +1,35 @@
 from fastapi_users.db import SQLAlchemyBaseUserTable
 
-from sqlalchemy import Boolean, String, Integer
+from sqlalchemy import (
+    Column, Boolean, Integer, MetaData, String, Table,)
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.orm import DeclarativeBase
+
+
+metadata = MetaData()
+
+
+user = Table(
+    'user',
+    metadata,
+    Column('id', Integer, primary_key=True),
+    Column(
+        'email', String(128), unique=True, nullable=False, index=True,),
+    Column(
+        'username', String(128), unique=True, nullable=False,),
+    Column(
+        'hashed_password', String(128), nullable=False,
+        ),
+    Column(
+        'is_active', Boolean, default=True, nullable=False,
+    ),
+    Column(
+        'is_superuser', Boolean, default=False, nullable=False,
+    ),
+    Column(
+        'is_verified', Boolean, default=False, nullable=False,
+    )
+)
 
 
 class Base(DeclarativeBase):

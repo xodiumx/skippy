@@ -6,8 +6,8 @@ from sqlalchemy import pool
 from alembic import context
 
 from config import DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME
-from users.tables import metadata as metadata_users
-from films.tables import metadata as metadata_films
+from users.models import metadata as metadata_users
+from films.models import metadata as metadata_films
 
 
 # this is the Alembic Config object, which provides
