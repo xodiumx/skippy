@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     admin_password: str
 
     imdb_key: str
+
+    celery_broker: str
+    celery_result_backend: str
     
 
 settings = Settings(
